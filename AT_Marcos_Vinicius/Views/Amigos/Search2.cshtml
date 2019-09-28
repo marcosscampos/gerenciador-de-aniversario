@@ -1,0 +1,67 @@
+﻿@model IEnumerable<Gerenciador.Domain.Amigos>
+
+@{
+    ViewBag.Title = "Search2";
+}
+
+
+<h2>Buscar</h2>
+<span>Digite o nome ou parte do nome da Pessoa:</span>
+
+<br />
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        <br />
+
+        <div class="form-group">
+            <div class="col-md-10">
+                <input type="text" name="pesquisa" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-10">
+                <input type="submit" value="Buscar" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(Model => Model.Nome)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(Model => Model.Sobrenome)
+        </th>
+    </tr>
+    @foreach (var amigo in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => amigo.Nome)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => amigo.Sobrenome)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = amigo.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = amigo.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = amigo.Id })
+            </td>
+        </tr>
+    }
+</table>
+
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>
+
