@@ -43,7 +43,7 @@ namespace AT_Marcos_Vinicius.Controllers
         
         public ActionResult Edit(int id)
         {
-            return View();
+            return View(BuscarPessoaPelo(id));
         }
 
         

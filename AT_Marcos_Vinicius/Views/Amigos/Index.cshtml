@@ -1,13 +1,14 @@
 ﻿@model IEnumerable<Gerenciador.Domain.Amigos>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Gerenciador de Aniversário";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h1>Gerenciador de Aniversário</h1>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Adicionar novo amigo", "Create") <br />
     @Html.ActionLink("Buscar", "Search")
 </p>
 <table class="table">

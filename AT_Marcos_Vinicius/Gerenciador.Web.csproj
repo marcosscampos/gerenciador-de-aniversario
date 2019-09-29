@@ -158,7 +158,7 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
+    <Content Include="Content\site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -191,7 +191,6 @@
     <Content Include="Views\Amigos\Edit.cshtml" />
     <Content Include="Views\Amigos\Delete.cshtml" />
     <Content Include="Views\Amigos\Search.cshtml" />
-    <Content Include="Views\Amigos\Search2.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
