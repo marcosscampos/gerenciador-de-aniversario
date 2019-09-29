@@ -14,6 +14,7 @@ namespace AT_Marcos_Vinicius.Controllers
         {
             var amigos = repositorio.SelecionarTodosOsAmigos();
             return View(amigos);
+
         }
 
 
@@ -25,7 +26,7 @@ namespace AT_Marcos_Vinicius.Controllers
             return View();
         }
 
-        
+
         [HttpPost]
         public ActionResult Create(Amigos amigo)
         {
@@ -40,13 +41,9 @@ namespace AT_Marcos_Vinicius.Controllers
             }
         }
 
-        
-        public ActionResult Edit(int id)
-        {
-            return View(BuscarPessoaPelo(id));
-        }
 
-        
+        public ActionResult Edit(int id) => View(BuscarPessoaPelo(id));
+
         [HttpPost]
         public ActionResult Edit(int id, Amigos amigo)
         {
@@ -54,15 +51,17 @@ namespace AT_Marcos_Vinicius.Controllers
             amigos.Nome = amigo.Nome;
             amigos.Sobrenome = amigo.Sobrenome;
             amigos.Aniversario = amigo.Aniversario;
+
             try
             {
                 repositorio.AtualizarAmigo(id, amigos);
-                return RedirectToAction("Index");
+                return RedirectToAction("Details", new { id = amigo.Id });
             }
             catch
             {
                 return View();
             }
+
         }
 
 
@@ -72,10 +71,12 @@ namespace AT_Marcos_Vinicius.Controllers
         [HttpPost]
         public ActionResult Delete(int id, Amigos amigo)
         {
-            Amigos amigos = new Amigos();
-            amigos.Nome = amigo.Nome;
-            amigos.Sobrenome = amigo.Sobrenome;
-            amigos.Aniversario = amigo.Aniversario;
+            Amigos amigos = new Amigos
+            {
+                Nome = amigo.Nome,
+                Sobrenome = amigo.Sobrenome,
+                Aniversario = amigo.Aniversario
+            };
             try
             {
                 repositorio.DeletarAmigo(id, amigos);
@@ -89,19 +90,17 @@ namespace AT_Marcos_Vinicius.Controllers
 
         public ActionResult Search()
         {
-            string pesquisarAmigo = "";
-            var repo = new AmigoRepositorio();
-            return View(BuscarPeloNome(pesquisarAmigo));
+            string nome = "";
+            return View(BuscarPeloNome(nome));
 
         }
 
         [HttpPost]
-        public ActionResult Search(string pesquisarAmigo)
+        public ActionResult Search(string nome)
         {
-
+            List<Amigos> buscarAmigo = BuscarPeloNome(nome);
             try
             {
-            List<Amigos> buscarAmigo = BuscarPeloNome(pesquisarAmigo);
                 return View(buscarAmigo);
             }
             catch
@@ -114,7 +113,7 @@ namespace AT_Marcos_Vinicius.Controllers
         public Amigos BuscarPessoaPelo(int id)
         {
             Amigos amigosEncontrados = new Amigos();
-            foreach (Amigos a in repositorio.SelecionarTodosOsAmigos())
+            foreach (Amigos a in repositorio.SelecionarAmigo(id))
             {
                 if (a.Id == id)
                 {
@@ -122,38 +121,25 @@ namespace AT_Marcos_Vinicius.Controllers
                     amigosEncontrados.Nome = a.Nome;
                     amigosEncontrados.Sobrenome = a.Sobrenome;
                     amigosEncontrados.Aniversario = a.Aniversario;
-                    break;
                 }
             }
             return amigosEncontrados;
         }
 
-        public List<Amigos> AniversariantesDoDia(DateTime aniversario)
+        public List<Amigos> BuscarPeloNome(string nome)
         {
-            List<Amigos> amigosAniversariantes = new List<Amigos>();
-            var amigosLista = repositorio.SelecionarTodosOsAmigos();
-            foreach(Amigos a in amigosLista)
-            {
-                if(a.Aniversario == DateTime.Now)
-                {
-                    amigosAniversariantes.Add(a);
-                }
-            }
-            return amigosAniversariantes;
-        }
-
-        public List<Amigos> BuscarPeloNome(string pesquisarAmigo)
-        {
-            List<Amigos> buscarAmigo = new List<Amigos>();
             var listaAmigos = repositorio.SelecionarTodosOsAmigos();
-            foreach (Amigos a in listaAmigos)
+            List<Amigos> resultList = new List<Amigos>();
+            foreach (Amigos amigo in listaAmigos)
             {
-                if (a.Nome.Contains(pesquisarAmigo))
+                if (amigo.Nome.Contains(nome))
                 {
-                    buscarAmigo.Add(a);
+                    resultList.Add(amigo);
                 }
             }
-            return buscarAmigo;
+            return resultList;
         }
     }
 }
+
+

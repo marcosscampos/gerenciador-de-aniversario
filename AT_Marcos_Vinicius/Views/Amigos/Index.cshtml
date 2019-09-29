@@ -5,13 +5,16 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<div class="container">
+
 <h1>Gerenciador de Aniversário</h1>
 
 <p>
     @Html.ActionLink("Adicionar novo amigo", "Create") <br />
-    @Html.ActionLink("Buscar", "Search")
+    @Html.ActionLink("Procurar amigo", "Search")
 </p>
-<table class="table">
+<table class="table table-striped">
+    <thead class="thead-dark">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Nome)
@@ -24,6 +27,7 @@
         </th>
         <th></th>
     </tr>
+    </thead>
 
     @foreach (var item in Model)
     {
@@ -38,9 +42,9 @@
                 @item.Aniversario.ToShortDateString()
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                @Html.ActionLink("Editar", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Detalhes", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Excluir", "Delete", new { id = item.Id })
             </td>
         </tr>
     }
@@ -49,7 +53,8 @@
 
 
 <h1>Aniversariante(s) de hoje</h1>
-<table class="table">
+<table class="table table-striped">
+    <thead class="thead-dark">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Nome)
@@ -62,6 +67,7 @@
         </th>
         <th></th>
     </tr>
+    </thead>
     @foreach (var item in Model)
     {
 
@@ -78,12 +84,13 @@
                     @Html.DisplayFor(modelItem => item.Aniversario)
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                    @Html.ActionLink("Editar", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Detalhes", "Details", new { id = item.Id }) |
+                    @Html.ActionLink("Excluir", "Delete", new { id = item.Id })
                 </td>
             </tr>
         }
     }
 
 </table>
+</div>

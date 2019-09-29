@@ -145,8 +145,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App_Start\BundleConfig.cs" />
-    <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AmigosController.cs" />
     <Compile Include="Global.asax.cs">
@@ -188,9 +186,9 @@
     <Content Include="Views\Amigos\Index.cshtml" />
     <Content Include="Views\Amigos\Details.cshtml" />
     <Content Include="Views\Amigos\Create.cshtml" />
-    <Content Include="Views\Amigos\Edit.cshtml" />
     <Content Include="Views\Amigos\Delete.cshtml" />
     <Content Include="Views\Amigos\Search.cshtml" />
+    <Content Include="Views\Amigos\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />

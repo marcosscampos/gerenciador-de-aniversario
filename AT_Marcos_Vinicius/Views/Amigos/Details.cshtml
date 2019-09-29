@@ -4,11 +4,10 @@
     ViewBag.Title = "Detalhes";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<h2>Detalhes de @Model.Nome @Model.Sobrenome</h2>
+<div class="container">
+<h1>Detalhes de @Model.Nome @Model.Sobrenome</h1>
 
 <div>
-    <h1>Amigos</h1>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -32,12 +31,13 @@
         </dt>
 
         <dd>
-            @Model.Aniversario.ToShortDateString();
+            @Model.Aniversario.ToShortDateString()
         </dd>
         <dd>Faltam @Model.TempoRestante() dia(s) para seu aniversário.</dd>
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Editar", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Voltar", "Index")
 </p>
+</div>

@@ -4,38 +4,31 @@
     ViewBag.Title = "Adicionar amigo";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<div class="container">
+    <h1>Adicionar Amigo</h1>
 
-<h2>Adicionar Amigo</h2>
 
-
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-
-    <h4>Amigos</h4>
-    <hr />
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    @Html.LabelFor(model => model.Nome, htmlAttributes: new { @class = "control-label col-md-2" })
-    @Html.EditorFor(model => model.Nome, new { htmlAttributes = new { @class = "form-control" } })
-    @Html.ValidationMessageFor(model => model.Nome, "", new { @class = "text-danger" })
-
-    @Html.LabelFor(model => model.Sobrenome, htmlAttributes: new { @class = "control-label col-md-2" })
-    @Html.EditorFor(model => model.Sobrenome, new { htmlAttributes = new { @class = "form-control" } })
-    @Html.ValidationMessageFor(model => model.Sobrenome, "", new { @class = "text-danger" })
-
-    @Html.LabelFor(model => model.Aniversario, htmlAttributes: new { @class = "control-label col-md-2" })
-    @Html.EditorFor(model => model.Aniversario, new { htmlAttributes = new { @class = "form-control" } })
-    @Html.ValidationMessageFor(model => model.Aniversario, "", new { @class = "text-danger" })
-
-    <div class="form-group">
-        <input type="submit" value="Create" class="btn-default" />
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <strong>@Html.LabelFor(model => model.Nome, htmlAttributes: new { @class = "control-label col-sm-2" })</strong>
+        @Html.EditorFor(model => model.Nome, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.Nome, "", new { @class = "text-danger" })
+        <br />
+        <strong>@Html.LabelFor(model => model.Sobrenome, htmlAttributes: new { @class = "control-label col-sm-2" })</strong>
+        @Html.EditorFor(model => model.Sobrenome, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.Sobrenome, "", new { @class = "text-danger" })
+        <br />
+        <strong>@Html.LabelFor(model => model.Aniversario, htmlAttributes: new { @class = "control-label col-sm-2" })</strong>
+        @Html.EditorFor(model => model.Aniversario, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.Aniversario, "", new { @class = "text-danger" })
+        <hr />
+        <div class="form-group">
+            <input type="submit" value="Adicionar" class="btn btn btn-primary" />
+        </div>
+    }
+    <div>
+        @Html.ActionLink("Voltar", "Index")
     </div>
-}
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
 </div>
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
